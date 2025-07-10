@@ -6,11 +6,11 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:wokytoky/config/app_config.dart';
+import 'package:wokytoky/config/themes.dart';
+import 'package:wokytoky/l10n/l10n.dart';
+import 'package:wokytoky/utils/localized_exception_extension.dart';
+import 'package:wokytoky/widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';
 import 'settings_homeserver.dart';
 

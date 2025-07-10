@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
+import 'package:wokytoky/config/app_config.dart';
+import 'package:wokytoky/config/setting_keys.dart';
+import 'package:wokytoky/config/themes.dart';
+import 'package:wokytoky/l10n/l10n.dart';
+import 'package:wokytoky/utils/platform_infos.dart';
+import 'package:wokytoky/widgets/layouts/max_width_body.dart';
+import 'package:wokytoky/widgets/matrix.dart';
+import 'package:wokytoky/widgets/settings_switch_list_tile.dart';
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {

@@ -4,12 +4,12 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/device_settings/device_settings_view.dart';
-import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:wokytoky/l10n/l10n.dart';
+import 'package:wokytoky/pages/device_settings/device_settings_view.dart';
+import 'package:wokytoky/pages/key_verification/key_verification_dialog.dart';
+import 'package:wokytoky/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:wokytoky/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:wokytoky/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {

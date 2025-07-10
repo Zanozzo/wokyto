@@ -8,9 +8,9 @@ import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/dialer/dialer.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:wokytoky/pages/chat_list/chat_list.dart';
+import 'package:wokytoky/pages/dialer/dialer.dart';
+import 'package:wokytoky/utils/platform_infos.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
 
