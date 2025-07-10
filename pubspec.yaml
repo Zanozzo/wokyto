@@ -1,9 +1,8 @@
-#pubspec.yaml
-#------------
-name: wokytoky
-description: Walk and talk.
+name: fluffychat
+description: Chat with your friends.
 publish_to: none
-version: 2.0.0+2
+# On version bump also increase the build number for F-Droid
+version: 2.0.0+3541
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -44,7 +43,7 @@ dependencies:
   flutter_shortcuts_new: ^2.0.0
   flutter_typeahead: ## Custom fork from flutter_typeahead since the package is not maintain well.
     git:
-      url: https://github.com/Zanozzo/wokyto.git
+      url: https://github.com/famedly/flutter_typeahead.git
       ref: main
   flutter_vodozemac: ^0.2.2
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
@@ -98,7 +97,6 @@ dependencies:
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_native_splash: ^2.0.3+1
-  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
@@ -126,15 +124,15 @@ flutter:
     - assets/vodozemac/
 
 msix_config:
-  display_name: WokyToky
-  publisher_display_name: WokyToky
-  publisher: CN=Wokytoky, O=Wokytoky, L=Web, S=None, C=EU
-  identity_name: wokyto.wokytoky.walkeytalkey
+  display_name: FluffyChat
+  publisher_display_name: FluffyChat
+  publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
+  identity_name: chat.fluffy.fluffychat
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https
-  app_uri_handler_hosts: matrix.to
-  execution_alias: wokytoky
+  app_uri_handler_hosts: fluffychat.im, matrix.to
+  execution_alias: fluffychat
   sign_msix: false
   install_certificate: false
 
@@ -153,8 +151,3 @@ dependency_overrides:
       ref: 3.x-without-v1
       path: flutter_web_auth_2
   win32: 5.5.3
-
-flutter_icons:
-  android: true
-  ios: false
-  image_path: "assets/logo.png"
