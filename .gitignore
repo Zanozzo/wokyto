@@ -1910,3 +1910,21 @@ web/pkg/vodozemac_bindings_dart_bg.wasm
 web/pkg/vodozemac_bindings_dart.js
 dev_files/tree
 lib/pages/build/.last_build_id
+
+# Flutter/Dart build
+build/
+.dart_tool/
+.packages
+pubspec.lock
+
+# Android/Gradle
+android/.gradle/
+android/local.properties
+
+# VS Code
+.vscode/
+
+# macOS & Linux junk
+.DS_Store
+.idea/
+
