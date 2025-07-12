@@ -107,56 +107,10 @@ class LoginController extends State<Login> {
   void _checkWellKnown(String userId) async {
     if (mounted) setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
-    final oldHomeserver = widget.client.homeserver;
-    try {
-      var newDomain = Uri.https(userId.domain!, '');
-      widget.client.homeserver = newDomain;
-      DiscoveryInformation? wellKnownInformation;
-      try {
-        wellKnownInformation = await widget.client.getWellknown();
-        if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
-          newDomain = wellKnownInformation.mHomeserver.baseUrl;
-        }
-      } catch (_) {
-        // do nothing, newDomain is already set to a reasonable fallback
-      }
-      if (newDomain != oldHomeserver) {
-        await widget.client.checkHomeserver(newDomain);
+    // final oldHomeserver = Uri.https('woky.to', '');
+    var newDomain = Uri.https('woky.to', '');
+    widget.client.homeserver = newDomain;
 
-        if (widget.client.homeserver == null) {
-          widget.client.homeserver = oldHomeserver;
-          // okay, the server we checked does not appear to be a matrix server
-          Logs().v(
-            '$newDomain is not running a homeserver, asking to use $oldHomeserver',
-          );
-          final dialogResult = await showOkCancelAlertDialog(
-            context: context,
-            useRootNavigator: false,
-            title: L10n.of(context)
-                .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (dialogResult == OkCancelResult.ok) {
-            if (mounted) setState(() => usernameError = null);
-          } else {
-            Navigator.of(context, rootNavigator: false).pop();
-            return;
-          }
-        }
-        usernameError = null;
-        if (mounted) setState(() {});
-      } else {
-        widget.client.homeserver = oldHomeserver;
-        if (mounted) {
-          setState(() {});
-        }
-      }
-    } catch (e) {
-      widget.client.homeserver = oldHomeserver;
-      usernameError = e.toLocalizedString(context);
-      if (mounted) setState(() {});
-    }
   }
 
   void passwordForgotten() async {
@@ -235,6 +189,59 @@ class LoginController extends State<Login> {
 
   static int sendAttempt = 0;
 
+  void register() async {
+    final matrix = Matrix.of(context);
+
+    if (usernameController.text.isEmpty) {
+      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
+    } else {
+      setState(() => usernameError = null);
+    }
+
+    if (passwordController.text.isEmpty) {
+      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
+    } else {
+      setState(() => passwordError = null);
+    }
+
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      return;
+    }
+
+    setState(() => loading = true);
+    _coolDown?.cancel();
+
+    try {
+      final client = await matrix.getLoginClient();
+      await client.request(
+        RequestType.POST,
+        '/client/v3/register',
+        data: {
+          'username': usernameController.text,
+          'password': passwordController.text,
+          'auth': {
+            'type': 'm.login.dummy',
+          },
+          'initial_device_display_name': PlatformInfos.clientName,
+        },
+      );
+    } on MatrixException catch (exception) {
+      setState(() {
+        passwordError = exception.errorMessage;
+        loading = false;
+      });
+      return;
+    } catch (exception) {
+      setState(() {
+        passwordError = exception.toString();
+        loading = false;
+      });
+      return;
+    }
+
+    if (mounted) setState(() => loading = false);
+  }
+  
   @override
   Widget build(BuildContext context) => LoginView(this);
 }

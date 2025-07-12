@@ -26,22 +26,8 @@ class LoginView extends StatelessWidget {
       enforceMobileMode:
           Matrix.of(context).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
+        automaticallyImplyLeading: false,
+        toolbarHeight: 0,
       ),
       body: Builder(
         builder: (context) {
@@ -110,13 +96,24 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primary,
+                      backgroundColor: const Color(0xFF7ED6D2),
                       foregroundColor: theme.colorScheme.onPrimary,
                     ),
                     onPressed: controller.loading ? null : controller.login,
                     child: controller.loading
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context).login),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: OutlinedButton(
+                    onPressed: controller.loading ? null : controller.register,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: theme.colorScheme.primary,
+                    ),
+                    child: const Text('Create new account'),
                   ),
                 ),
                 const SizedBox(height: 16),
